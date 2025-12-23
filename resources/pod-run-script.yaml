@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: run-mounted-script
+spec:
+  restartPolicy: Never
+  containers:
+    - name: runner
+      image: python:3.11-slim
+      command: ["python", "/opt/script/script.py"]
+      volumeMounts:
+        - name: script-volume
+          mountPath: /opt/script
+          readOnly: true
+  volumes:
+    - name: script-volume
+      configMap:
+        name: my-script-config
+        defaultMode: 0755

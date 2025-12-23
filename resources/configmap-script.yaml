@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-script-config
+data:
+  script.py: |
+    #!/usr/bin/env python3
+    import time
+    print("Hello from mounted script")
+    for i in range(3):
+        print("tick", i+1)
+        time.sleep(1)
